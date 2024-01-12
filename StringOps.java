@@ -22,8 +22,8 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        String tester = "vowels are fun";
-        System.out.println(capVowelsLowRest(tester));
+        String tester = "    Intro to coMPUter sCIEncE";
+        System.out.println(camelCase(tester));
     }
 
     public static String capVowelsLowRest (String string) {
@@ -45,8 +45,24 @@ public class StringOps {
     }
 
     public static String camelCase (String string) {
-        // Write your code here:
-        return "";
+        String res = "";
+        boolean cap = true;
+        for(int i=0; i<string.length(); i++){
+            char curr = string.charAt(i);   
+            if(curr == 32){
+                // remove spaces
+                cap = true;
+                continue;
+            }
+            if(cap){
+                curr = toUpperCase(curr);
+                cap = false;
+            } else {
+                curr = toLowerCase(curr);
+            }
+            res += curr;
+        }
+        return res;
     }
 
     public static int[] allIndexOf (String string, char chr) {
