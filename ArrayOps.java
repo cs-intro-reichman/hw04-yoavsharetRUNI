@@ -21,6 +21,7 @@ public class ArrayOps {
     public static int secondMaxValue(int [] array) {
         // find max value
         int max = max(array);
+        while()
         int[] removed_max = remove(array, max);
         // now, current max will be the second max value
         return max(removed_max);
@@ -97,15 +98,19 @@ public class ArrayOps {
      * 
      * @param array
      * @param n
-     * @return A new int[] array, without n
+     * @return A new int[] array, without the first occurrence of n
      */
     public static int[] remove(int[]array, int n){
-        int[] res = new int[array.length - count(array, n)];
+        int[] res = new int[array.length -1];
+        boolean removed = false;
         int res_index = 0;
         for(int i = 0; i < array.length; i++){
-            if(array[i] != n){
-                res[res_index++] = array[i];
+            if(array[i] == n){
+                if(!removed){
+                    continue;
+                }
             }
+            res[res_index++] = array[i];
         }
         return res;
     }
