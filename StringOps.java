@@ -22,21 +22,106 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        
+
     }
 
     public static String capVowelsLowRest (String string) {
-        // Write your code here:
-        return "";
+        String res = "";
+        for(int i =0; i< string.length(); i++){
+            char curr = string.charAt(i);
+            if(curr == 32){
+                res += curr;
+                continue;
+            }
+            if("aeiouAEIOU".indexOf(curr) != -1){
+                res += toUpperCase(curr);
+            }
+            else {
+                res += toLowerCase(curr);
+            }
+        }
+        return res;
     }
 
     public static String camelCase (String string) {
-        // Write your code here:
-        return "";
+        String res = "";
+        boolean cap = false;
+        int i = 0;
+        
+        // remove spaces at the start of the string
+        while(string.charAt(i) == 32){
+            i++;
+        }
+
+        for(; i<string.length(); i++){
+            char curr = string.charAt(i);   
+            if(curr == 32){
+                // remove spaces
+                cap = true;
+                continue;
+            }
+            if(cap){
+                curr = toUpperCase(curr);
+                cap = false;
+            } else {
+                curr = toLowerCase(curr);
+            }
+            res += curr;
+        }
+        return res;
     }
 
     public static int[] allIndexOf (String string, char chr) {
-        // Write your code here:
-        return new int[1];
+        int[] res = new int[count(string, chr)];
+        int res_index = 0, search_index = 0;
+        while (string.indexOf(chr, search_index) != -1) {
+            res[res_index++] = string.indexOf(chr, search_index);
+            search_index = string.indexOf(chr, search_index) + 1;
+        }
+        return res;
+    }
+
+
+    /*** help function ***/
+     /**
+      * 
+      * @param c - a character
+      * @return if c is upper cased - lower cased c, otherwise returns c
+      */
+    public static char toLowerCase(char c){
+        if(c > 'Z'){
+            // c is not UpperCased
+            return c;
+        }
+        return (char)((int)c + 32);
+    } 
+
+    /**
+     * 
+     * @param c - a character
+     * @return if c is lower cased - upper cased c, otherwise returns c
+     */
+    public static char toUpperCase(char c){
+        if(c < 'a'){
+            // c is not LowerCased
+            return c;
+        }
+        return (char)((int)c - 32);
+    }
+
+    /***
+     * 
+     * @param s a string
+     * @param c a character
+     * @return number of occurrences oc c in s
+     */
+    public static int count(String s, char c){
+        int count = 0;
+        int search_index = 0;
+        while(s.indexOf(c, search_index) != -1){
+            count++;
+            search_index = s.indexOf(c, search_index) + 1;
+        }
+        return count;
     }
 }
