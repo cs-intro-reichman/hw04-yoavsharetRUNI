@@ -22,12 +22,26 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        
+        String tester = "vowels are fun";
+        System.out.println(capVowelsLowRest(tester));
     }
 
     public static String capVowelsLowRest (String string) {
-        // Write your code here:
-        return "";
+        String res = "";
+        for(int i =0; i< string.length(); i++){
+            char curr = string.charAt(i);
+            if(curr == 32){
+                res += curr;
+                continue;
+            }
+            if("aeiouAEIOU".indexOf(curr) != -1){
+                res += toUpperCase(curr);
+            }
+            else {
+                res += toLowerCase(curr);
+            }
+        }
+        return res;
     }
 
     public static String camelCase (String string) {
@@ -38,5 +52,24 @@ public class StringOps {
     public static int[] allIndexOf (String string, char chr) {
         // Write your code here:
         return new int[1];
+    }
+
+    /*** help function ***/
+
+    public static char toLowerCase(char c){
+        if(c > 'Z'){
+            // c is not UpperCased
+            return c;
+        }
+        return (char)((int)c + 32);
+    }
+    
+
+    public static char toUpperCase(char c){
+        if(c < 'a'){
+            // c is not LowerCased
+            return c;
+        }
+        return (char)((int)c - 32);
     }
 }
