@@ -1,7 +1,8 @@
 public class ArrayOps {
     public static void main(String[] args) {
-        int[] test = {0, 1, 3, 4, 5, 2, 7 ,8, 9, 12, 11};
-        System.err.println(secondMaxValue(test));
+        int[] test1 = {0, 1, 5, 4};
+        int [] test2 = {4, 1, 4, 3, 0, 5, 4};
+        System.err.println(containsTheSameElements(test1, test2));
     }
     
     public static int findMissingInt (int [] array) {
@@ -28,8 +29,15 @@ public class ArrayOps {
     }
 
     public static boolean containsTheSameElements(int [] array1,int [] array2) {
-        // Write your code here:
-        return false;
+        int[] largest_array = (countUnique(array1) > countUnique(array2)) ? array1 : array2;
+        int[] smallest_array = (countUnique(array1) < countUnique(array2)) ? array1 : array2;
+        
+        for(int i=0; i<largest_array.length; i++){
+            if(count(smallest_array, largest_array[i]) == 0){
+                return false;
+            }
+        }   
+        return true;
     }
 
     public static boolean isSorted(int [] array) {
@@ -87,4 +95,49 @@ public class ArrayOps {
         return max_val;
     }
 
+    /**
+     * 
+     * @param array
+     * @param value
+     * @param index
+     * @return retruns true if the value appears in the array 
+     * before the given index; false otherwise
+     */
+    public static boolean contains(int[] array, int value, int index){
+        for(int i = 0; i<index; i++){
+            if(array[i] == value){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 
+     * @param array
+     * @return count of unique values in the given array
+     */
+    public static int countUnique(int[] array){
+        int count = 0;
+        for (int i = 0; i<array.length; i++){
+            count = contains(array, array[i], i) ? count : count + 1;
+        }
+        return count;
+    }
+
+    /**
+     * 
+     * @param array
+     * @return new array, with unique values
+     */
+    public static int[] unique(int[] array){
+        int[] res = new int[countUnique(array)];
+        int res_index = 0;
+        for(int i=0; i<array.length; i++){
+            if(!contains(array, array[i], i)){
+                res[res_index++] = array[i];
+            }
+        }
+        return res;
+    }
 }
