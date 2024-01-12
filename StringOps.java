@@ -46,7 +46,14 @@ public class StringOps {
     public static String camelCase (String string) {
         String res = "";
         boolean cap = false;
-        for(int i=0; i<string.length(); i++){
+        int i = 0;
+        
+        // remove spaces at the start of the string
+        while(string.charAt(i) == 32){
+            i++;
+        }
+
+        for(; i<string.length(); i++){
             char curr = string.charAt(i);   
             if(curr == 32){
                 // remove spaces
