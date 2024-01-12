@@ -81,17 +81,26 @@ public class StringOps {
         return res;
     }
 
-    /*** help function ***/
 
+    /*** help function ***/
+     /**
+      * 
+      * @param c - a character
+      * @return if c is upper cased - lower cased c, otherwise returns c
+      */
     public static char toLowerCase(char c){
         if(c > 'Z'){
             // c is not UpperCased
             return c;
         }
         return (char)((int)c + 32);
-    }
-    
+    } 
 
+    /**
+     * 
+     * @param c - a character
+     * @return if c is lower cased - upper cased c, otherwise returns c
+     */
     public static char toUpperCase(char c){
         if(c < 'a'){
             // c is not LowerCased
@@ -100,6 +109,12 @@ public class StringOps {
         return (char)((int)c - 32);
     }
 
+    /***
+     * 
+     * @param s a string
+     * @param c a character
+     * @return number of occurrences oc c in s
+     */
     public static int count(String s, char c){
         int count = 0;
         int search_index = 0;

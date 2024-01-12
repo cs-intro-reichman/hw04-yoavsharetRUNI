@@ -21,7 +21,7 @@ public class ArrayOps {
     public static int secondMaxValue(int [] array) {
         // find max value
         int max = max(array);
-        int[] removed_max = remove(array, max, false);
+        int[] removed_max = remove(array, max);
         // now, current max will be the second max value
         return max(removed_max);
     }
@@ -79,8 +79,8 @@ public class ArrayOps {
 
     /**
      * 
-     * @param array
-     * @param n
+     * @param array - array of integers
+     * @param n - an integer
      * @return number of times the integer n appears in array
      */
     public static int count(int[]array, int n){
@@ -92,20 +92,20 @@ public class ArrayOps {
         }
         return count;
     }
-
-    /**
+    
+    /***
      * 
-     * @param array
-     * @param n
-     * @return A new int[] array, without the first occurrence of n
+     * @param array - array of integers
+     * @param n - an integer
+     * @return new array, with all of the given array items, but the first occurrence of n
      */
-    public static int[] remove(int[]array, int n, boolean removeAll){
+    public static int[] remove(int[]array, int n){
         int[] res = new int[array.length -1];
         boolean removed = false;
         int res_index = 0;
         for(int i = 0; i < array.length; i++){
             if(array[i] == n){
-                if(!removed || removeAll){
+                if(!removed){
                     removed = true;
                     continue;
                 }
@@ -117,7 +117,7 @@ public class ArrayOps {
     
      /**
       * 
-      * @param array
+      * @param array - array of integers
       * @return max integer in the given array
       */
     public static int max(int[] array){
@@ -132,9 +132,9 @@ public class ArrayOps {
 
     /**
      * 
-     * @param array
-     * @param value
-     * @param index
+     * @param array - array of integers
+     * @param value - an integer
+     * @param index - search limit index
      * @return retruns true if the value appears in the array 
      * before the given index; false otherwise
      */
@@ -149,7 +149,7 @@ public class ArrayOps {
 
     /**
      * 
-     * @param array
+     * @param array - array of integers
      * @return count of unique values in the given array
      */
     public static int countUnique(int[] array){
