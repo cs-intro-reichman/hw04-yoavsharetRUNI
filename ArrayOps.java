@@ -1,8 +1,6 @@
 public class ArrayOps {
     public static void main(String[] args) {
-        int[] test1 = {0, 1, 5, 4};
-        int [] test2 = {4, 1, 4, 3, 0, 5, 4};
-        System.err.println(containsTheSameElements(test1, test2));
+
     }
     
     public static int findMissingInt (int [] array) {
@@ -41,8 +39,39 @@ public class ArrayOps {
     }
 
     public static boolean isSorted(int [] array) {
-        // Write your code here:
-        return false;
+        if(array.length < 2){
+            return true;
+        }
+
+        int i = 0;
+        
+        // As long as the array values are equal, it is considerd sorted \
+        // and we cannt determine the possible sorting direction 
+        while (i < array.length -1) {
+            if(array[i] != array[i+1]){
+                break;
+            }
+            i++;
+        }
+
+        // if all of the array items untill the last item (not included) \
+        // are equals - the array is sorted (regardless of the value of the last item)
+        if(i == array.length-1){
+            return true;
+        }
+
+        // deteimine optional diraction
+        boolean increasing = array[i] < array[i+1] ? true: false;
+        i++;
+        for(;i<array.length -1; i++){
+            if(increasing && (array[i] > array[i+1])){
+                return false;
+            }
+            else if (!increasing && (array[i] < array[i+1])){
+                return false;
+            }
+        }
+        return true;
     }
 
 
@@ -123,21 +152,5 @@ public class ArrayOps {
             count = contains(array, array[i], i) ? count : count + 1;
         }
         return count;
-    }
-
-    /**
-     * 
-     * @param array
-     * @return new array, with unique values
-     */
-    public static int[] unique(int[] array){
-        int[] res = new int[countUnique(array)];
-        int res_index = 0;
-        for(int i=0; i<array.length; i++){
-            if(!contains(array, array[i], i)){
-                res[res_index++] = array[i];
-            }
-        }
-        return res;
     }
 }
