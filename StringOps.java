@@ -22,11 +22,7 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        String tester = "Hello World";
-        int[] res = allIndexOf(tester, 'l');
-        for(int i=0; i<res.length; i++){
-            System.out.print(res[i] + " ");
-        }
+
     }
 
     public static String capVowelsLowRest (String string) {
@@ -49,7 +45,7 @@ public class StringOps {
 
     public static String camelCase (String string) {
         String res = "";
-        boolean cap = true;
+        boolean cap = false;
         for(int i=0; i<string.length(); i++){
             char curr = string.charAt(i);   
             if(curr == 32){
